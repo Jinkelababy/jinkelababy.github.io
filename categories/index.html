@@ -320,6 +320,9 @@
           
 
   
+	<div id="gitalk-container">
+	</div>
+  
 
 
 
@@ -631,6 +634,21 @@
 
 
 
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'e4090b131a7f5d6e6b5b',
+          clientSecret: '0fc3fc9801e458cee6908b5cd83760db00e4c1eb',
+          repo: 'jinkelababy.github.io',
+          owner: 'jinkelababy',
+          admin: ['jinkelababy'],
+          id: location.pathname,
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
 
   
 
