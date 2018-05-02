@@ -94,7 +94,8 @@
 <meta property="og:image" content="https://jinkelababy.github.io/2018/05/02/python-operator/1.3.png">
 <meta property="og:image" content="https://jinkelababy.github.io/2018/05/02/python-operator/1.4.png">
 <meta property="og:image" content="https://jinkelababy.github.io/2018/05/02/python-operator/1.5.png">
-<meta property="og:updated_time" content="2018-05-02T06:58:21.095Z">
+<meta property="og:image" content="https://jinkelababy.github.io/2018/05/02/python-operator/1.6.png">
+<meta property="og:updated_time" content="2018-05-02T07:30:51.155Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python运算符及使用">
 <meta name="twitter:description" content="特别提示：本文省略或简写了一些与其他语言相同的运算符的使用规则，主要挑选Python特有的运算符语法。 常用运算符除了这里介绍的运算符外，Python还有其他运算符，但是不再一一介绍。  算数运算符Python支持的算数运算符（Arithmetic Operator）为基本的加、减、乘、除等运算，算数运算符需要有两个操作数来构成表达式。算数运算符所操作的操作数的数据类型可以为整形、浮点型、复数、布">
@@ -385,7 +386,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  963
+                  1,234
                 </span>
               
 
@@ -401,7 +402,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  5
                 </span>
               
             </div>
@@ -442,7 +443,8 @@
 </blockquote>
 <p><strong>注意：对于一个字符串序列来说，成员运算符的左侧的操作数必须为字符串类型，否则会报错。</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">'abc123'</span></span><br><span class="line">b = <span class="number">2</span></span><br><span class="line">print(b <span class="keyword">in</span> a)  <span class="comment">#报错 上一句 b = 2 改为 b = '2'即可</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="运算符的优先级"><a href="#运算符的优先级" class="headerlink" title="运算符的优先级"></a>运算符的优先级</h3><p>老生常谈，直接上图，<strong>优先级顺序从高到低</strong>：<br><img src="/2018/05/02/python-operator/1.5.png" alt=""></p>
-<h2 id="具有运算功能的内置函数"><a href="#具有运算功能的内置函数" class="headerlink" title="具有运算功能的内置函数"></a>具有运算功能的内置函数</h2><p>特别特别好用的内置函数，Python内置函数位于Python标准库（Standard Library），Python环境自带标准库。</p>
+<h2 id="具有运算功能的内置函数"><a href="#具有运算功能的内置函数" class="headerlink" title="具有运算功能的内置函数"></a>具有运算功能的内置函数</h2><p>特别特别好用的内置函数，Python内置函数位于Python标准库（Standard Library），Python环境自带标准库。<br>想要查询Python的内置函数，我们可以通过Python另一个内置函数dir（）来实现<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(dir(__builtins__))</span><br></pre></td></tr></table></figure></p>
+<p>在这里我们主要讨论的是与<strong>运算</strong>有关的内置函数。<br>先放表，然后给大家写一下例子。<br><img src="/2018/05/02/python-operator/1.6.png" alt=""><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">print(sum([<span class="number">1.1</span>,<span class="number">2.1</span>,<span class="number">3.1</span>,<span class="number">4.1</span>]))  <span class="comment">#求序列元素之和，输出10.4</span></span><br><span class="line">print(pow(<span class="number">6</span>,<span class="number">2</span>))  <span class="comment">#幂运算6的2次方，输出36</span></span><br><span class="line">print(divmod(<span class="number">6</span>,<span class="number">2</span>))  <span class="comment">#整除（6/2）和取模（6%2），输出（3，0）</span></span><br><span class="line">print(abs(<span class="number">-666</span>))  <span class="comment">#绝对值，输出666</span></span><br><span class="line">print(all([<span class="number">3</span>&gt;<span class="number">2</span>,<span class="number">6</span>&lt;<span class="number">9</span>])) <span class="comment">#迭代对象都为True，才输出True，输出True</span></span><br><span class="line">print(all([<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>]))  <span class="comment">#输出True</span></span><br><span class="line">print(any([<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>]))  <span class="comment">#迭代对象有一个为True，才输出True,输出True</span></span><br><span class="line">print(any([]))  <span class="comment">#迭代对象为空，输出False</span></span><br><span class="line">print(max(<span class="number">6</span>,<span class="number">9</span>))  <span class="comment">#输出最大值，输出9</span></span><br><span class="line">print(max([<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>]))  <span class="comment">#输出7</span></span><br><span class="line">print(min(<span class="number">6</span>,<span class="number">9</span>))  <span class="comment">#输出最小值，输出6</span></span><br><span class="line">print(min([<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>]))  <span class="comment">#输出2</span></span><br><span class="line">print(round(<span class="number">3.748</span>,<span class="number">2</span>))  <span class="comment">#求与3.748相近的数，返回小数点2位，输出3.75</span></span><br></pre></td></tr></table></figure></p>
 
       
     </div>
