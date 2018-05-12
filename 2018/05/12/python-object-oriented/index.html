@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="东风第一枝">
 <meta property="og:description" content="在编写代码时，我们通常不会毫无规划地逐条执行语句和指令，而是先有模块化（Modularization）抽象设计，希冀能使代码最大程度地重复使用，同时将设计、调试和维护等的复杂度降至最低。函数也是模块化设计的一种。而面向对象编程（Object-Oriented Programming）更是模块化设计的重要方法。 面向对象的概念 面向对象这种编程范式（Programming Paradigm）认为世界">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-12T05:59:51.784Z">
+<meta property="og:updated_time" content="2018-05-12T07:18:31.197Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python面向对象">
 <meta name="twitter:description" content="在编写代码时，我们通常不会毫无规划地逐条执行语句和指令，而是先有模块化（Modularization）抽象设计，希冀能使代码最大程度地重复使用，同时将设计、调试和维护等的复杂度降至最低。函数也是模块化设计的一种。而面向对象编程（Object-Oriented Programming）更是模块化设计的重要方法。 面向对象的概念 面向对象这种编程范式（Programming Paradigm）认为世界">
@@ -379,7 +379,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  414
+                  982
                 </span>
               
 
@@ -395,7 +395,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  4
                 </span>
               
             </div>
@@ -421,6 +421,13 @@
 <p><strong>面向对象这种编程范式（Programming Paradigm）</strong>认为世界是由各式各样的对象所组成的，不同的对象之间可以相互作用和通讯。</p>
 <h3 id="类和对象的含义"><a href="#类和对象的含义" class="headerlink" title="类和对象的含义"></a>类和对象的含义</h3><p>说到面向对象就不得不说<strong>类</strong>（Class），和<strong>对象</strong>的含义，比如说把一个汽车看成一个对象，那么这个小汽车对象包含的信息可能有轮胎型号、发动机型号、方向盘型号等等。这些描述对象特征的数据信息称为这个对象的<strong>属性（Attribute）</strong>；而存取属性的函数称为<strong>方法（Method）</strong>，是对象与外界沟通的接口。<br>具有相同属性与方法的对象，构成了一个<strong>类（Class）</strong>。类其实就是一种将对象抽象化而形成的概念，简单来说<strong>对象</strong>就是<strong>类</strong>的实例化（Instance）。</p>
 <h3 id="面向对象编程的三大特征"><a href="#面向对象编程的三大特征" class="headerlink" title="面向对象编程的三大特征"></a>面向对象编程的三大特征</h3><p>“面向对象编程”的思想起源于20世纪60年代的Simula语言，并逐渐在各种语言上发展出三大特征：“<strong>封装</strong>”、“<strong>继承</strong>”、“<strong>多态</strong>”。</p>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><hr>
+<p>划重点：<br><strong>在Python这种动态语言中，属性与方法可以动态绑定，故同一类所产生的实例，未必具有同样的属性或方法！！！！</strong></p>
+<h3 id="一个类的不同实例"><a href="#一个类的不同实例" class="headerlink" title="一个类的不同实例"></a>一个类的不同实例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Asset</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">asset1 = Asset()</span><br><span class="line">asset1.id = <span class="string">'001'</span></span><br><span class="line">asset2 = Asset()</span><br><span class="line">asset2.price = <span class="number">12</span></span><br><span class="line">print(asset1.id,asset2.price)</span><br><span class="line"><span class="comment">## 输出001 12</span></span><br></pre></td></tr></table></figure>
+<p>看上面的例子，首先讲讲小括号里的<strong>object</strong>，小括号里面填写的是现在定义的类<strong>继承</strong>自哪一类。如果没有明显<strong>继承</strong>自哪一类，则填<strong>object</strong>，<strong>object</strong>是所有类继承的源头。<br>然后我们来看第四行和第六行，asset1和asset2都是创建自Asset类的一个实例。而第五行和第七行则是给实例各自绑定了一个代码属性。</p>
+<h3 id="一个类拥有共同特征"><a href="#一个类拥有共同特征" class="headerlink" title="一个类拥有共同特征"></a>一个类拥有共同特征</h3><p>上面的例子演示了源于同一个类的不同实例，藉由动态绑定可以拥有不同的属性。这样做虽然自由，但是有悖于把类视为实例的模版惯例，也不利于软件开发与维护。<strong>如果我们希望创建同一个类的实例拥有一些共同的特征</strong>，那么我们可以定义一个特殊的方法：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Asset</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, id, price)</span>:</span></span><br><span class="line">        self.id = id</span><br><span class="line">        self.price = price</span><br><span class="line"></span><br><span class="line">asset3 = Asset(<span class="string">'003'</span>,<span class="number">100.5</span>)</span><br><span class="line">print(asset3.id,asset3.price)</span><br><span class="line"><span class="comment">## 输出003 100.5</span></span><br></pre></td></tr></table></figure></p>
+<p>首先这样写的目的在于绑定一些在创建实例时<strong>非填不可的属性</strong>。<br>那么我们就来看看<strong><strong>init</strong></strong>函数的参数，首先<strong>self</strong>指的是被实例化出来的对象，一般不用传递进来，<strong>id</strong>和<strong>price</strong>则是用于给对象的属性赋值，这两个必须进行参数传递，如果在<strong>init</strong>方法中绑定的属性，在创建实例时没有传入相应的参数，那么Python就会报错。<br><strong>题外话</strong><br>当然我们在编写Python类时，可以创建一个AssetClass.py的文件，专门存放Asset()类的定义代码。此外，创建完类的名称以后，加入一些文字说明，简要阐述类的主要内容，以方便使用者快速了解此类功能，这些文字储存成字符串形式。</p>
+<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><hr>
 <p><strong>本文部分整理转载自《量化投资：以Python为工具》蔡立耑 仅供学习研究之用，侵删。</strong></p>
 
       
@@ -650,7 +657,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象的概念"><span class="nav-number">1.</span> <span class="nav-text">面向对象的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类和对象的含义"><span class="nav-number">1.1.</span> <span class="nav-text">类和对象的含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象编程的三大特征"><span class="nav-number">1.2.</span> <span class="nav-text">面向对象编程的三大特征</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象的概念"><span class="nav-number">1.</span> <span class="nav-text">面向对象的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类和对象的含义"><span class="nav-number">1.1.</span> <span class="nav-text">类和对象的含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象编程的三大特征"><span class="nav-number">1.2.</span> <span class="nav-text">面向对象编程的三大特征</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类"><span class="nav-number">2.</span> <span class="nav-text">类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一个类的不同实例"><span class="nav-number">2.1.</span> <span class="nav-text">一个类的不同实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个类拥有共同特征"><span class="nav-number">2.2.</span> <span class="nav-text">一个类拥有共同特征</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封装"><span class="nav-number">3.</span> <span class="nav-text">封装</span></a></li></ol></div>
             
 
           </div>
