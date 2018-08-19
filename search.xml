@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Python计算加权平均成绩和算数平均成绩的小脚本]]></title>
+    <url>%2F2018%2F08%2F19%2Fpython-gpa%2F</url>
+    <content type="text"><![CDATA[我校打印成绩单里面只有GPA，没有平均分让人很烦心！为了方便计算成绩，就写了个小脚本分享出来啦。123456789101112131415161718192021import win32api, win32conimport pandas as pddef get_desktop(): key = win32api.RegOpenKey(win32con.HKEY_CURRENT_USER, \ r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', \ 0, win32con.KEY_READ) return win32api.RegQueryValueEx(key, 'Desktop')[0]path = get_desktop()csv_file = pd.read_csv(open(path + '\\' + "gpa.csv"))num = 0;add = 0;up = 0;down = 0for i in range(len(csv_file)): add += csv_file.at[i,"score"] num += 1 up += csv_file.at[i,"score"] * csv_file.at[i,"credit"] down += csv_file.at[i,"credit"]ans1 = add / numans2 = up / downprint("算数平均成绩为："+str(ans1))print("加权平均成绩为："+str(ans2)) 如果想要顺便计算GPA等数据，直接改循环里面就OK。使用方法：1.确认好自己装好了所需要的环境。2.将每科的成绩和绩点如下图储存到csv文件。3.将csv文件放到桌面。]]></content>
+      <categories>
+        <category>Python小脚本</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Python标准库与数据操作]]></title>
     <url>%2F2018%2F06%2F20%2Fpython-standardlibrary%2F</url>
-    <content type="text"><![CDATA[Python之所以广受推崇的原因之一，就是其具有众多功能强大的库（Library）。 模块、包和库 在Python中，除了函数库，模块（Module）和包（Package）也经常被人提及，用几个简单的例子解释一下Python中模块、包和库的概念。 模块模块是一种以.py为后缀的文件，在.py文件中定义了一些常量和函数。比如：我们定义priceSequence是某一个股票交易日内开市后的日成交价格序列。priceAnalysis.py代码如下：1234567891011121314151617181920212223242526#求开盘价#股票日内交易一天内第一笔成交的成交价格定义为“开盘价”def OpenPrice(priceSequence): Open = priceSequence[0] return Open#求收盘价#股票日内交易一天内最后一笔成交的成交价格定义为“收盘价”def ClosePrice(priceSequence): Close = priceSequence[-1] return Close#求最高价#股票日内交易价格序列的最大值定义为“最高价”def HighPrice(priceSequence): High = priceSequence[0] for price in priceSequence: if price &gt; High: High = price return High#求最低价#股票日内交易价格序列的最小值定义为“最低价”def LowPrice(priceSequence): Low = priceSequence[0] for price in priceSequence: if price &lt; Low: Low = price return Low 这时候我们的就创建了一个名为priceAnalysis的模块，模块的名称就是.py脚本文件的名称。接下来我们使用import导入，就可以使用这个模块了。123456789#导入模块的语句形式import 特定模块名称import 特定模块名称 as 自定义名称#导入priceAnalysis模块import priceAnalysis as PrA#如果要导入模块内的特定函数，我们可以用from...import...语句，比如：from priceAnalysis import ClocePrice 我们把模块看作一个对象，通过“模块名称.常量名称”来获得模块内的特定变量，通过“模块名称.函数名称”来获取该模块内的特定函数。12345678910import priceAnalysis as PrAprice=[19,18,20,22,17,21]print(PrA.OpenPrice(price))#求开盘价 输出19print(PrA.ClosePrice(price))#求收盘价 输出21print(PrA.HighPrice(price))#求最高价 输出22print(PrA.LowPrice(price))#求最低价 输出17 包包体现了模块的结构化管理思想，包由模块文件构成，将众多具有相关联功能的模块文件结构化组合形成包。 本文部分整理转载自《量化投资：以Python为工具》蔡立耑 仅供学习研究之用，侵删。]]></content>
+    <content type="text"><![CDATA[Python之所以广受推崇的原因之一，就是其具有众多功能强大的库（Library）。 模块、包和库 在Python中，除了函数库，模块（Module）和包（Package）也经常被人提及，用几个简单的例子解释一下Python中模块、包和库的概念。 模块模块是一种以.py为后缀的文件，在.py文件中定义了一些常量和函数。比如：我们定义priceSequence是某一个股票交易日内开市后的日成交价格序列。priceAnalysis.py代码如下：1234567891011121314151617181920212223242526#求开盘价#股票日内交易一天内第一笔成交的成交价格定义为“开盘价”def OpenPrice(priceSequence): Open = priceSequence[0] return Open#求收盘价#股票日内交易一天内最后一笔成交的成交价格定义为“收盘价”def ClosePrice(priceSequence): Close = priceSequence[-1] return Close#求最高价#股票日内交易价格序列的最大值定义为“最高价”def HighPrice(priceSequence): High = priceSequence[0] for price in priceSequence: if price &gt; High: High = price return High#求最低价#股票日内交易价格序列的最小值定义为“最低价”def LowPrice(priceSequence): Low = priceSequence[0] for price in priceSequence: if price &lt; Low: Low = price return Low 这时候我们的就创建了一个名为priceAnalysis的模块，模块的名称就是.py脚本文件的名称。接下来我们使用import导入，就可以使用这个模块了。123456789#导入模块的语句形式import 特定模块名称import 特定模块名称 as 自定义名称#导入priceAnalysis模块import priceAnalysis as PrA#如果要导入模块内的特定函数，我们可以用from...import...语句，比如：from priceAnalysis import ClocePrice 我们把模块看作一个对象，通过“模块名称.常量名称”来获得模块内的特定变量，通过“模块名称.函数名称”来获取该模块内的特定函数。12345678910import priceAnalysis as PrAprice=[19,18,20,22,17,21]print(PrA.OpenPrice(price))#求开盘价 输出19print(PrA.ClosePrice(price))#求收盘价 输出21print(PrA.HighPrice(price))#求最高价 输出22print(PrA.LowPrice(price))#求最低价 输出17 包包体现了模块的结构化管理思想，包由模块文件构成，将众多具有相关联功能的模块文件结构化组合形成包。那么我们从编程开发的角度来看，比如两个程序员A与B将功能不同的模块文件取了相同的名字（比如为priceAnalysis），如果第三人导入了这个模块，就无法分辨出是哪个priceAnalysis模块。所以，A与B可以分别构造出一个包。将模块放到包的下面，第三人再通过“包.模块名”进行访问，那么就可以进行区分了。123456789#导入模块的语句形式import 特定模块名称import 特定模块名称 as 自定义名称#导入priceAnalysis模块import priceAnalysis as PrA#如果要导入模块内的特定函数，我们可以用from...import...语句，比如：from priceAnalysis import ClocePrice 我们把模块看作一个对象，通过“模块名称.常量名称”来获得模块内的特定变量，通过“模块名称.函数名称”来获取该模块内的特定函数。1234import stock.priceAnalysis#导入stock文件夹下面的priceAnalysis模块import future.priceAnalysis#导入future文件夹下面的priceAnalysis模块 库Python中的库是借用其他编程语言的概念，没有特别具体的定义，Python库着重强调其功能性。在Python中，具有某些功能的模块和包都可以被称作库。模块由诸多函数组成，包由诸多模块结构化构成，库中也可以包含包、模块和函数。举例来说，NumPy库是一个具有强大科学计算功能的函数库，与此同时，我们也可以把NumPy称作包，由许多丰富功能的模块构成。 Python标准库的介绍 Python标准库是Python自带的函数库，成功安装了Python就可以使用标准库。标准库中包括了内置函数（Built-in Functions）、内置常量（Built-in Constants）、内置数据类型（Built-in Types）、内置异常（Built-in Exceptions）以及众多功能函数组成的模块。这些模块中的函数用C语言编写而成。 内置函数（Built-in Functions）Python内置函数，就是Python标准库中自带的函数，Python标准库提供了一些常用功能的函数。通过代码1print(dir(__builtins__)) 即可将Python内置函数名称进行输出。 内置常量（Built-in Constants）Python内置常量是存在于Python内置命名空间中的常量，常量值不能被程序更改。在python 3.5.1版本中，布尔类型取值的True和False为内置常量；内置常量NoneType类型的None一般用于带有参数的函数的参数默认取值中，表示取值的缺失；Python的内置常量还包括NotImplemented、Ellipsis、debug、和site模块中的部分常量值等。123print(True) #输出Trueprint(False) #输出Falseprint(None) #输出None 内置数据类型（Built-in Types）数值型（Numerics）、序列（Sequences）、容器类型（Mappings）、类（Classes）、类的实例（Instances）和异常值类型（Exception）等属于Python解释器（Interpreter）中内置的数据类型（Built-in types）。 内置异常（Built-in Exceptions）内置异常是指在程序运行过程中出现的错误，包括语法错误（SyntaxError）、缩进错误（IndentationError）、系统错误（SystemError）、命名错误（NameError）等，在Python中用try…except捕捉异常，用raise抛出异常，而所有异常都从类Exception中继承。 内置模块Python标准库中的模块众多，在这里我们仅挑出几个常用的模块来阐述Python模块的使用方式和 本文部分整理转载自《量化投资：以Python为工具》蔡立耑 仅供学习研究之用，侵删。]]></content>
       <categories>
         <category>Python各种库操作</category>
       </categories>
@@ -70,18 +81,6 @@
     <title><![CDATA[Github+hexo+next博客搭建与优化主题资料整合]]></title>
     <url>%2F2018%2F04%2F17%2FGithub-hexo-next%2F</url>
     <content type="text"><![CDATA[哇哦，经过两个下午的愉悦努力，终于把博客做好了！在此博客的搭建过程中看了很多前辈写的教程，为了方便后来人，在此将资源进行整合。希望对你们有帮助！ hexo本地项目及与GitHub仓库的关联这部分按照步骤来就可以了，最后遇到了一点小问题，总之先放主要的链接：使用GitHub和hexo搭建博客过程 最后我的博客css没有加载进来，传上来的只有各种文字。 这时候要在项目根目录下的_config.yml文件中寻找url，将url后面加上你博客的地址就可以了比如我的: 1【url: https://jinkelababy.github.io/】 next主题的优化32种个性化教程（包括大多数你需要的东西）next主题的优化也算是找了很久，最后发现了一个小哥哥写的简单易懂，而且功能齐全，把链接贴出来给大家分享：hexo的next主题个性化教程:打造炫酷网站 如果这些还不能满足你，有一个小姐姐写的更加齐全，但是个人感觉没有上面的小哥哥的简单易懂：打造个性超赞博客Hexo+NexT+GithubPages的超深度优化 gitalk评论系统大概功能做好以后，一直觉得没有评论系统，不能和在座优秀的人才交流，很可惜。那么完美星人的我又开始到处折腾，于是找到了干货：Hexo NexT主题中集成gitalk评论系统 结束语这就是我两个下午的成果了，希望这些能对大家有所帮助，如果有帮助希望你们能到处分享一下~欢迎评论，欢迎分享！本博客会更新一些诸如算法题，项目源码的文章，如果感兴趣可以关注一下~（鞠躬）。]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2018%2F04%2F15%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
       <categories>
         <category>教程</category>
       </categories>
