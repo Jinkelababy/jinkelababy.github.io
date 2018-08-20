@@ -91,7 +91,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://jinkelababy.github.io/2018/08/19/python-gpa/1.1.png">
 <meta property="og:image" content="https://jinkelababy.github.io/2018/08/19/python-gpa/1.2.png">
-<meta property="og:updated_time" content="2018-08-19T14:07:36.351Z">
+<meta property="og:updated_time" content="2018-08-20T02:36:17.032Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python计算加权平均成绩和算数平均成绩的小脚本">
 <meta name="twitter:description" content="我校打印成绩单里面只有GPA，没有平均分让人很烦心！为了方便计算成绩，就写了个小脚本分享出来啦。123456789101112131415161718192021import win32api, win32conimport pandas as pddef get_desktop():    key = win32api.RegOpenKey(win32con.HKEY_CURRENT_USER,">
@@ -420,7 +420,7 @@
 
       
         <p>我校打印成绩单里面只有GPA，没有平均分让人很烦心！<br>为了方便计算成绩，就写了个小脚本分享出来啦。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> win32api, win32con</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_desktop</span><span class="params">()</span>:</span></span><br><span class="line">    key = win32api.RegOpenKey(win32con.HKEY_CURRENT_USER, \</span><br><span class="line">                              <span class="string">r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders'</span>, \</span><br><span class="line">                              <span class="number">0</span>, win32con.KEY_READ)</span><br><span class="line">    <span class="keyword">return</span> win32api.RegQueryValueEx(key, <span class="string">'Desktop'</span>)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">path = get_desktop()</span><br><span class="line">csv_file = pd.read_csv(open(path + <span class="string">'\\'</span> + <span class="string">"gpa.csv"</span>))</span><br><span class="line">num = <span class="number">0</span>;add = <span class="number">0</span>;up = <span class="number">0</span>;down = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(csv_file)):</span><br><span class="line">    add += csv_file.at[i,<span class="string">"score"</span>]</span><br><span class="line">    num += <span class="number">1</span></span><br><span class="line">    up += csv_file.at[i,<span class="string">"score"</span>] * csv_file.at[i,<span class="string">"credit"</span>]</span><br><span class="line">    down += csv_file.at[i,<span class="string">"credit"</span>]</span><br><span class="line">ans1 = add / num</span><br><span class="line">ans2 = up / down</span><br><span class="line">print(<span class="string">"算数平均成绩为："</span>+str(ans1))</span><br><span class="line">print(<span class="string">"加权平均成绩为："</span>+str(ans2))</span><br></pre></td></tr></table></figure></p>
-<p>如果想要顺便计算GPA等数据，直接改循环里面就OK。<br><strong>使用方法：</strong><br>1.确认好自己装好了所需要的环境。<br>2.将每科的成绩和绩点如下图储存到csv文件。<br><img src="/2018/08/19/python-gpa/1.1.png" alt=""><br>3.将csv文件放到桌面。<br><img src="/2018/08/19/python-gpa/1.2.png" alt=""></p>
+<p>如果想要顺便计算GPA等数据，直接改循环里面就OK。<br><strong>使用方法：</strong><br>1.确认好自己装好了所需要的环境。<br>2.将每科的成绩和学分如下图储存到csv文件。<br><img src="/2018/08/19/python-gpa/1.1.png" alt=""><br>3.将csv文件放到桌面。<br><img src="/2018/08/19/python-gpa/1.2.png" alt=""></p>
 
       
     </div>
@@ -580,7 +580,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
